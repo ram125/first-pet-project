@@ -34,7 +34,7 @@ let styles = {
 let Exposition = ({exposed}) => {
 	const images = require.context('../img', true);
 
-	const {Clicked} = useContext(Context)
+	const {Exposed} = useContext(Context)
 
 	return(
 		<div style={styles.mainDiv}>
@@ -43,7 +43,7 @@ let Exposition = ({exposed}) => {
 				<h2 style={styles.h2}>{exposed.name}</h2>
 				<p>{exposed.description}</p>
 			</div>
-			<button style={styles.button} onClick={() => {Clicked(0)}}>X</button>
+			<button style={styles.button} onClick={() => {Exposed(0)}}>X</button>
 		</div>
 	)
 }

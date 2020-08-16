@@ -32,7 +32,8 @@ let styles = {
 const Product = ({product}) => {
 	let stars = []
 
-	const {Clicked} = useContext(Context)
+	const {Exposed} = useContext(Context)
+	const {Deleted} = useContext(Context)
 
 	for(let i=0; i<5; i++){
 		if(i<product.rating){
@@ -70,12 +71,16 @@ const Product = ({product}) => {
 				<div
 				 id={"ctrlBtn"+product.id+"0"}
 				 className="ctrlBtn unactive first"
-				 onClick={() => {Clicked(product.id)}}
+				 onClick={() => {Exposed(product.id)}}
 				>
 					<FontAwesomeIcon icon={faEye} />
 				</div>
 				<div id={"ctrlBtn"+product.id+"1"} className="ctrlBtn unactive second"><FontAwesomeIcon icon={faEdit} /></div>
-				<div id={"ctrlBtn"+product.id+"2"} className="ctrlBtn unactive third"><FontAwesomeIcon icon={faTrash} /></div>
+				<div
+				 id={"ctrlBtn"+product.id+"2"} 
+				 className="ctrlBtn unactive third"
+				 onClick={() => {Deleted(product.id)}}
+				><FontAwesomeIcon icon={faTrash} /></div>
 			</div>
 			<h3 style={styles.h3}>{product.name}</h3>
 			<div style={styles.rating}>

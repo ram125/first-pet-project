@@ -6,22 +6,22 @@ import Context from './Context'
 
 const App = () => {
 
-	let products = [
-		{
-			id: 1,
-			name: 'white dress', 
-			image: './1.jpg', 
-			description: 'some really good white dress',
-			rating: 3
-		}, 
-		{
-			id: 2,
-			name: 'red dress', 
-			image: './2.jpg', 
-			description: 'some really good red dress',
-			rating: 4
-		}
-	]
+	let [products, setProduct] = React.useState([
+			{
+				id: 1,
+				name: 'white dress', 
+				image: './1.jpg', 
+				description: 'some really good white dress',
+				rating: 3
+			}, 
+			{
+				id: 2,
+				name: 'red dress', 
+				image: './2.jpg', 
+				description: 'some really good red dress',
+				rating: 4
+			}
+		])
 
 	const [exposedProduct, setExposedProduct] = React.useState( 0 )
 
@@ -43,8 +43,12 @@ const App = () => {
 		setExposedProduct(id)
 	}
 
+	let deleteProduct = (id) => {
+		setProduct(products.filter(product => product.id !== id))
+	}
+
 	return(
-		<Context.Provider value={{ Clicked: changeExposed }}>
+		<Context.Provider value={{ Exposed: changeExposed, Deleted: deleteProduct }}>
 			<div className="first_class">
 				<h1>React tutorial</h1>
 				{exposedProduct !== 0 ? (
