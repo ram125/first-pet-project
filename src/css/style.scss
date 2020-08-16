@@ -1,0 +1,57 @@
+*{
+	margin: 0;
+	bottom: 0;
+}
+
+$grey_color: #888888;
+
+
+.active{
+	opacity: 1;
+	bottom: 20px;
+}
+
+.unactive{
+	opacity: 0;
+	bottom: 0px;
+}
+
+.ctrlPanel{
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.ctrlBtn{
+	height: 40px;
+	width: 40px;
+	background: white;
+	border-radius: 20px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	transform: translateX(-50%);
+	align-items: center;
+	color: #888888;
+	border: none;
+	cursor: pointer;
+	transition: .2s ease bottom, .2s ease opacity, .2s ease background, .2s ease color;
+	&:hover{
+		background: red;
+		color: white;
+	}
+}
+
+.first{
+	left: 30%;
+}
+
+.second{
+	left: 50%;
+}
+
+.third{
+	left: 70%;
+}
