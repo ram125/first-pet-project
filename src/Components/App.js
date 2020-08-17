@@ -3,6 +3,7 @@ import '../css/style.css'
 import ProductsRow from './ProductsRow'
 import Exposition from './Exposition'
 import Context from './Context'
+import AddProduct from './AddProduct'
 
 const App = () => {
 
@@ -47,8 +48,21 @@ const App = () => {
 		setProduct(products.filter(product => product.id !== id))
 	}
 
+	let newProduct = (name, description, rating) => {
+		console.log(products.length)
+		let newProd = {
+			id: products.length+1,
+			name: name,
+			image: './2.jpg',
+			description: description,
+			rating: rating
+		}
+		setProduct(products.concat(newProd))
+		console.log(products)
+	}
+
 	return(
-		<Context.Provider value={{ Exposed: changeExposed, Deleted: deleteProduct }}>
+		<Context.Provider value={{ Exposed: changeExposed, Deleted: deleteProduct, NewProduct: newProduct}}>
 			<div className="first_class">
 				<h1>React tutorial</h1>
 				{exposedProduct !== 0 ? (
@@ -56,6 +70,7 @@ const App = () => {
 				) : (
 					<p>no exposition</p>
 				)}
+				<AddProduct />
 				{list_rows.map(
 					row => {
 						return(row)
