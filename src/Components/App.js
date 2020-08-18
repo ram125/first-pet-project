@@ -62,7 +62,13 @@ const App = () => {
 	}
 
 	return(
-		<Context.Provider value={{ Exposed: changeExposed, Deleted: deleteProduct, NewProduct: newProduct}}>
+		<Context.Provider value={{ 
+			Exposed: changeExposed, 
+			Deleted: deleteProduct, 
+			NewProduct: newProduct, 
+			Changed: setProduct,
+			Products: products
+		}}>
 			<div className="first_class">
 				<h1>React tutorial</h1>
 				{exposedProduct !== 0 ? (

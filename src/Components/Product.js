@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import Context from './Context'
+import Form from './Form'
 import '../css/style.css'
 
 
@@ -32,8 +33,12 @@ let styles = {
 const Product = ({product}) => {
 	let stars = []
 
-	const {Exposed} = useContext(Context)
-	const {Deleted} = useContext(Context)
+	let [formShown, setFormShown] = React.useState(false)
+
+	const {Exposed} = React.useContext(Context)
+	const {Deleted} = React.useContext(Context)
+	const {Changed} = React.useContext(Context)
+	const {Products} = React.useContext(Context)
 
 	for(let i=0; i<5; i++){
 		if(i<product.rating){
@@ -58,6 +63,22 @@ const Product = ({product}) => {
 		}
 	}
 
+	const saveChanges = (name, description, rating) => {
+		let prevProduct = product
+		prevProduct.name = name
+		prevProduct.description = description
+		prevProduct.rating = rating
+		let curProduct = Products.map(product => {
+					if(product.id === prevProduct.id){
+						return(prevProduct)
+					}
+					return(product)
+				}
+			)
+		Changed(curProduct)
+		setFormShown(false)
+	}
+
 	const images = require.context('../img', true);
 	return(
 		<div
@@ -75,7 +96,15 @@ const Product = ({product}) => {
 				>
 					<FontAwesomeIcon icon={faEye} />
 				</div>
-				<div id={"ctrlBtn"+product.id+"1"} className="ctrlBtn unactive second"><FontAwesomeIcon icon={faEdit} /></div>
+				<div 
+				 id={"ctrlBtn"+product.id+"1"} 
+				 className="ctrlBtn unactive second" 
+				 onClick={() => {
+				 	setFormShown(!formShown)
+				 }}
+				>
+					<FontAwesomeIcon icon={faEdit} />
+				</div>
 				<div
 				 id={"ctrlBtn"+product.id+"2"} 
 				 className="ctrlBtn unactive third"
@@ -97,6 +126,9 @@ const Product = ({product}) => {
 				}
 			</div>
 			<p>{product.description}</p>
+			{formShown ? (
+				<Form product={product} saveChanges={saveChanges}/>
+			): (<p></p>)}
 		</div>
 	)
 }
