@@ -63,6 +63,7 @@ let AddProduct = () => {
 		if(value.name.trim()){
 			NewProduct(value.name, value.description, value.rating)
 			setValue({name: '', description: '', rating: ''})
+			changeClass()
 		}
 	}
 

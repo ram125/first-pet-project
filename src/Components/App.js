@@ -4,7 +4,28 @@ import ProductsRow from './ProductsRow'
 import Exposition from './Exposition'
 import Context from './Context'
 import AddProduct from './AddProduct'
-
+/*, 
+			{
+				id: 3,
+				name: 'blue dress', 
+				image: './1.jpg', 
+				description: "i don't really like this dress",
+				rating: 3
+			}, 
+			{
+				id: 4,
+				name: 'yellow dress', 
+				image: './2.jpg', 
+				description: 'this dress is just ok',
+				rating: 1
+			}, 
+			{
+				id: 5,
+				name: 'green dress', 
+				image: './2.jpg', 
+				description: 'and this is just a duck',
+				rating: 4
+			}*/
 const App = () => {
 
 	let [products, setProduct] = React.useState([
@@ -20,6 +41,27 @@ const App = () => {
 				name: 'red dress', 
 				image: './2.jpg', 
 				description: 'some really good red dress',
+				rating: 5
+			}, 
+			{
+				id: 3,
+				name: 'blue dress', 
+				image: './1.jpg', 
+				description: "i don't really like this dress",
+				rating: 3
+			}, 
+			{
+				id: 4,
+				name: 'yellow dress', 
+				image: './2.jpg', 
+				description: 'this dress is just ok',
+				rating: 1
+			}, 
+			{
+				id: 5,
+				name: 'green dress', 
+				image: './2.jpg', 
+				description: 'and this is just a duck',
 				rating: 4
 			}
 		])
@@ -40,16 +82,25 @@ const App = () => {
 		list_rows[i] = <ProductsRow products={current_row} key={w+(i*4)}/>
 	}
 
-	let changeExposed = (id) => {
-		setExposedProduct(id)
-	}
-
 	let deleteProduct = (id) => {
-		setProduct(products.filter(product => product.id !== id))
+		if(exposedProduct === id){
+			setExposedProduct(0)
+		}
+		let newProductList = []
+		products.forEach(product => {
+			if(product.id !== id){
+				if(product.id > id){
+					product.id--
+					newProductList.push(product)
+				}else{
+					newProductList.push(product)
+				}
+			}
+		})
+		setProduct(newProductList)
 	}
 
 	let newProduct = (name, description, rating) => {
-		console.log(products.length)
 		let newProd = {
 			id: products.length+1,
 			name: name,
@@ -58,12 +109,11 @@ const App = () => {
 			rating: rating
 		}
 		setProduct(products.concat(newProd))
-		console.log(products)
 	}
 
 	return(
 		<Context.Provider value={{ 
-			Exposed: changeExposed, 
+			Exposed: setExposedProduct, 
 			Deleted: deleteProduct, 
 			NewProduct: newProduct, 
 			Changed: setProduct,
