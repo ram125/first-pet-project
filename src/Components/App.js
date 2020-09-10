@@ -4,7 +4,6 @@ import ProductsRow from './ProductsRow'
 import Exposition from './Exposition'
 import Context from './Context'
 import AddProduct from './AddProduct'
-import Stars from './Stars'
 /*, 
 			{
 				id: 3,
@@ -133,7 +132,6 @@ const App = () => {
 						return(row)
 					}
 				)}
-				<Stars />
 			</div>
 		</Context.Provider>
 	);

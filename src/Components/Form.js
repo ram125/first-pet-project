@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Stars from './Stars'
 
 let Form = ({product, saveChanges}) => {
 	
@@ -37,11 +37,11 @@ let Form = ({product, saveChanges}) => {
 				 the description here
 				 <input name="description" type="text" value={value.description} onChange={e => handleChange(e)}/>
 				</p>
-				<p>
-				 the rating here
-				 <input name="rating" type="text" value={value.rating} onChange={e => handleChange(e)}/>
-				</p>
-				<input type="submit" />
+				<div style={{display: "flex", flexDirection: "row"}}>
+				 <p>the rating here</p>
+				 <Stars name={value.name} description={value.description} rating={value.rating} changeFunc={setValue}/>
+				</div>
+				<input type="submit"/>
 			</form>
 		</div>
 	)

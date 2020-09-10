@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react'
 import Context from './Context'
+import Stars from './Stars'
 
 let AddProduct = () => {
 
@@ -62,7 +63,7 @@ let AddProduct = () => {
 		event.preventDefault()
 		if(value.name.trim()){
 			NewProduct(value.name, value.description, value.rating)
-			setValue({name: '', description: '', rating: ''})
+			setValue({name: '', description: '', rating: 0})
 			changeClass()
 		}
 	}
@@ -79,10 +80,10 @@ let AddProduct = () => {
 					 the description
 					 <input name="description" type="text" value={value.description} onChange={e => handleChange(e)} />
 					</p>
-					<p>
-					 the rating
-					 <input name="rating" type="text" value={value.rating} onChange={e => handleChange(e)} />
-					</p>
+					<div style={{display: "flex", flexDirection: "row"}}>
+						<p>the rating</p>
+						<Stars name={value.name} description={value.description} rating={value.rating} changeFunc={setValue}/>
+					</div>
 					<input type="submit" />
 				</form>
 			</div>

@@ -2,15 +2,26 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-let Stars = () => {
+let Stars = ({name, description, rating, changeFunc}) => {
 
 	let styles = {
 		main: {
-			margin: '100px'
+			margin: '0 10px'
+		}
+	}
+
+
+
+	let firstStarList = []
+	for(let i=0; i<5; i++){
+		if(i<rating){
+			firstStarList[i] = "yellow"
+		}else{
+			firstStarList[i] = "grey"
 		}
 	}
 	
-	let [starsColor, setStarsColor] = React.useState(["grey", "grey", "grey", "grey", "grey"])
+	let [starsColor, setStarsColor] = React.useState(firstStarList)
 
 	let colorNegative = (index) => {
 		let newList = []
@@ -61,6 +72,8 @@ let Stars = () => {
 				newList[i] = "grey"
 			}
 		}
+		let newForm = {name: name, description: description, rating: ++index}
+		changeFunc(newForm)
 		setStarsColor(newList)
 	}
 
