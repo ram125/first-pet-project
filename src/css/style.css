@@ -74,7 +74,36 @@
     background: red; }
 
 .addForm {
-  margin-left: -185px;
+  margin-left: -260px;
   transition: margin-left .2s ease; }
+
+.inputs {
+  border: 2px solid #787878;
+  padding: 10px;
+  width: 220px;
+  margin: 10px 0;
+  border-radius: 5px; }
+
+form p {
+  padding-left: 10px;
+  font-weight: 700;
+  text-transform: capitalize; }
+  form p:first-child {
+    margin-top: 10px;
+    padding-top: 10px; }
+
+.stars {
+  margin: 10px; }
+
+.formBtn {
+  background: #878787;
+  margin: 10px;
+  border: 0px;
+  height: 40px;
+  width: 125px;
+  color: #f1f1f1;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 15px; }
 
 /*# sourceMappingURL=style.css.map */

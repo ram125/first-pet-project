@@ -36,11 +36,15 @@ const Product = ({product}) => {
 	let result = product.description
 	if(product.id === 1 && product.description.length > 50){
 		result = ""
-		for(let i=0; i<45; i++){
+		let i = 0;
+		for(; i<50; i++){
 			result += product.description[i]
 		}
+		while(product.description[i] !== " "){
+			result += product.description[i]
+			i++
+		}
 		result += "..."
-		console.log(result)
 	}
 
 	let [formShown, setFormShown] = React.useState(false)

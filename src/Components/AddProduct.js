@@ -37,7 +37,7 @@ let AddProduct = () => {
 		let theForm = document.getElementById("Form")
 		if(theBtn.classList.contains("addProductA")){
 			theBtn.classList.remove("addProductA")
-			theForm.style.marginLeft = "-185px"
+			theForm.style.marginLeft = "-260px"
 		}else{
 			theBtn.classList.add("addProductA")
 			theForm.style.marginLeft = "0px"
@@ -69,16 +69,24 @@ let AddProduct = () => {
 		<div style={styles.main}>
 			<div style={styles.myform}>
 				<form onSubmit={handleSubmit} className="addForm" id="Form">
-					<p>
-					 <input name="name" placeholder="Name of the product" type="text" value={value.name} onChange={e => handleChange(e)} />
+					<p style={{display: "flex", flexDirection: "column"}}>
+						title
+						<input className="inputs" name="name" placeholder="Name of the product" type="text" value={value.name} onChange={e => handleChange(e)} />
 					</p>
 					<p>
-					 <input name="description" placeholder="Description of the product" type="text" value={value.description} onChange={e => handleChange(e)} />
+						description
+						<input className="inputs" style={{
+							height: "200px",
+							resize: "none",
+							display: "block",
+							overflow: "auto"
+						}} name="description" placeholder="Description of the product" type="text" value={value.description} onChange={e => handleChange(e)} />
 					</p>
-					<div style={{display: "flex", flexDirection: "row"}}>
+					<div style={{display: "flex", flexDirection: "column"}}>
+						<p style={{marginBottom: "10px"}}>rating</p>
 						<Stars name={value.name} description={value.description} rating={value.rating} changeFunc={setValue}/>
 					</div>
-					<input type="submit" />
+					<input type="submit" className="formBtn" value="Save changes"/>
 				</form>
 				<div id="addBtn" className="addProduct" onClick={changeClass}>
 				</div>
