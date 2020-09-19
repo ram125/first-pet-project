@@ -55,3 +55,41 @@ $grey_color: #888888;
 .third{
 	left: 70%;
 }
+
+.addProduct{
+	height: 12px;
+	width: 60px;
+	background: green;
+	margin: 30px;
+	display: flex;
+	flex-direction: row;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+	transition: transform .2s ease;
+	&:after{
+		content: "";
+		height: 60px;
+		width: 12px;
+		background: green;
+		position: absolute;
+		left: 24px;
+		bottom: -24px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: transform .2s ease;
+	}
+}
+
+.addProductA{
+	transform: rotate(45deg);
+	background: red;
+	&:after{
+		background: red;
+	}
+}
+
+.addForm{
+	margin-left: -185px;
+	transition: margin-left .2s ease;
+}

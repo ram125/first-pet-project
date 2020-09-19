@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react'
 import Context from './Context'
 import Stars from './Stars'
+import '../css/style.css'
 
 let AddProduct = () => {
 
@@ -9,19 +10,15 @@ let AddProduct = () => {
 			display: "flex",
 			flexDirection: "row"
 		},
-		form: {
-			display: "none"
+		myform: {
+			position: "relative",
+			display: "flex",
+			flexDirection: "row"
 		}, 
 		addBtn: {
-			height: "50px",
-			width: "50px",
-			border: "1px solid black",
-			borderRadius: "50%",
+			border: "0px solid black",
 			cursor: "pointer",
 			background: "white"
-		},
-		myform: {
-			display: "none"
 		}
 	}
 
@@ -36,14 +33,14 @@ let AddProduct = () => {
 	const {NewProduct} = useContext(Context)
 
 	let changeClass = () => {
-		let theObject = document.getElementById("myForm")
 		let theBtn = document.getElementById("addBtn")
-		if(theObject.style.display === "none"){
-			theObject.style.display = "flex"
-			theBtn.innerHTML = "X"
+		let theForm = document.getElementById("Form")
+		if(theBtn.classList.contains("addProductA")){
+			theBtn.classList.remove("addProductA")
+			theForm.style.marginLeft = "-185px"
 		}else{
-			theObject.style.display = "none"
-			theBtn.innerHTML = "+"
+			theBtn.classList.add("addProductA")
+			theForm.style.marginLeft = "0px"
 		}
 	}
 
@@ -70,24 +67,22 @@ let AddProduct = () => {
 
 	return(
 		<div style={styles.main}>
-			<div id="myForm" style={styles.myform}>
-				<form onSubmit={handleSubmit}>
+			<div style={styles.myform}>
+				<form onSubmit={handleSubmit} className="addForm" id="Form">
 					<p>
-					 the name here
-					 <input name="name" type="text" value={value.name} onChange={e => handleChange(e)} />
+					 <input name="name" placeholder="Name of the product" type="text" value={value.name} onChange={e => handleChange(e)} />
 					</p>
 					<p>
-					 the description
-					 <input name="description" type="text" value={value.description} onChange={e => handleChange(e)} />
+					 <input name="description" placeholder="Description of the product" type="text" value={value.description} onChange={e => handleChange(e)} />
 					</p>
 					<div style={{display: "flex", flexDirection: "row"}}>
-						<p>the rating</p>
 						<Stars name={value.name} description={value.description} rating={value.rating} changeFunc={setValue}/>
 					</div>
 					<input type="submit" />
 				</form>
+				<div id="addBtn" className="addProduct" onClick={changeClass}>
+				</div>
 			</div>
-			<button id="addBtn" style={styles.addBtn} onClick={changeClass}>+</button>
 		</div>
 	)
 }

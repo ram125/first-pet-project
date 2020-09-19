@@ -33,7 +33,7 @@ const App = () => {
 				id: 1,
 				name: 'white dress', 
 				image: './1.jpg', 
-				description: 'some really good white dress',
+				description: "here i'll write my description of the product. It's a really good product and you definetly should buy it. another thing i can say abt a product that doesn't even exist is that it has a rly good price - only 35$ another thingie is that i'm so tired rn to write something with meaning but i need a lot of letters to test my new function. you could say that i should've taken some existing product but bruh i'm too lazy for that shit. actually i think that amount of letters will be enough so i'll just leave it like that",
 				rating: 3
 			}, 
 			{

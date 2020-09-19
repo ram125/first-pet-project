@@ -30,15 +30,12 @@ let Form = ({product, saveChanges}) => {
 		<div>
 			<form onSubmit={handleSubmit}>
 				<p>
-				 the name here
-				 <input name="name" type="text" value={value.name} onChange={e => handleChange(e)}/>
+				 <input name="name" placeholder="name"type="text" value={value.name} onChange={e => handleChange(e)}/>
 				</p>
 				<p>
-				 the description here
-				 <input name="description" type="text" value={value.description} onChange={e => handleChange(e)}/>
+				 <input name="description" placeholder="description" type="text" value={value.description} onChange={e => handleChange(e)}/>
 				</p>
 				<div style={{display: "flex", flexDirection: "row"}}>
-				 <p>the rating here</p>
 				 <Stars name={value.name} description={value.description} rating={value.rating} changeFunc={setValue}/>
 				</div>
 				<input type="submit"/>

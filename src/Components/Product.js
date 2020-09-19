@@ -15,6 +15,7 @@ let styles = {
 		flexDirection: 'column',
 		alignItems: 'center',
 		margin: '0 10px',
+		maxWidth: "260px"
 	},
 	rating: {
 		display: 'flex',
@@ -32,6 +33,15 @@ let styles = {
 
 const Product = ({product}) => {
 	let stars = []
+	let result = product.description
+	if(product.id === 1 && product.description.length > 50){
+		result = ""
+		for(let i=0; i<45; i++){
+			result += product.description[i]
+		}
+		result += "..."
+		console.log(result)
+	}
 
 	let [formShown, setFormShown] = React.useState(false)
 
@@ -125,7 +135,7 @@ const Product = ({product}) => {
 					)
 				}
 			</div>
-			<p>{product.description}</p>
+			<p>{result}</p>
 			{formShown ? (
 				<Form product={product} saveChanges={saveChanges}/>
 			): (<p></p>)}
