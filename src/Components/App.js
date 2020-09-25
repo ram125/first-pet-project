@@ -4,28 +4,6 @@ import ProductsRow from './ProductsRow'
 import Exposition from './Exposition'
 import Context from './Context'
 import AddProduct from './AddProduct'
-/*, 
-			{
-				id: 3,
-				name: 'blue dress', 
-				image: './1.jpg', 
-				description: "i don't really like this dress",
-				rating: 3
-			}, 
-			{
-				id: 4,
-				name: 'yellow dress', 
-				image: './2.jpg', 
-				description: 'this dress is just ok',
-				rating: 1
-			}, 
-			{
-				id: 5,
-				name: 'green dress', 
-				image: './2.jpg', 
-				description: 'and this is just a duck',
-				rating: 4
-			}*/
 const App = () => {
 
 	let [products, setProduct] = React.useState([
@@ -63,6 +41,27 @@ const App = () => {
 				image: './2.jpg', 
 				description: 'and this is just a duck',
 				rating: 4
+			}, 
+			{
+				id: 6,
+				name: 'blue dress', 
+				image: './1.jpg', 
+				description: "i don't really like this dress",
+				rating: 3
+			}, 
+			{
+				id: 7,
+				name: 'yellow dress', 
+				image: './2.jpg', 
+				description: 'this dress is just ok',
+				rating: 1
+			}, 
+			{
+				id: 8,
+				name: 'green dress', 
+				image: './2.jpg', 
+				description: 'and this is just a duck',
+				rating: 4
 			}
 		])
 
@@ -85,6 +84,9 @@ const App = () => {
 	let deleteProduct = (id) => {
 		if(exposedProduct === id){
 			setExposedProduct(0)
+		}
+		if(exposedProduct > id){
+			setExposedProduct(id--)
 		}
 		let newProductList = []
 		products.forEach(product => {
@@ -120,11 +122,10 @@ const App = () => {
 			Products: products
 		}}>
 			<div className="first_class">
-				<h1>React tutorial</h1>
 				{exposedProduct !== 0 ? (
 					<Exposition exposed={products[exposedProduct-1]}/>
 				) : (
-					<p>no exposition</p>
+					<p>currently no exposition</p>
 				)}
 				<AddProduct />
 				{list_rows.map(

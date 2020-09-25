@@ -38,9 +38,11 @@ let AddProduct = () => {
 		if(theBtn.classList.contains("addProductA")){
 			theBtn.classList.remove("addProductA")
 			theForm.style.marginLeft = "-260px"
+			theForm.style.height = "0px"
 		}else{
 			theBtn.classList.add("addProductA")
 			theForm.style.marginLeft = "0px"
+			theForm.style.height = "100%"
 		}
 	}
 
